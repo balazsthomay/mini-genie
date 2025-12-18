@@ -90,9 +90,9 @@ def train_dynamics(
         num_codes=config.tokenizer.num_codes,
     ).to(device)
     tokenizer.load_state_dict(checkpoint['model_state_dict'])
-    tokenizer.eval()  # Frozen
+    tokenizer.eval()  # Frozen, sets batch norm/dropout to inference mode
     for param in tokenizer.parameters():
-        param.requires_grad = False
+        param.requires_grad = False # no gradients computed
     print("Tokenizer loaded and frozen")
     
     # Load dataset (sequences of frames)

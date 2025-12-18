@@ -15,7 +15,7 @@ class DataConfig:
     frame_width: int = 64            # resize frames to this width
     
     # Dataset
-    seq_len: int = 8                 # frames per sequence for training
+    seq_len: int = 8                 # frames per sequence for training (down from 16 to be memory efficient)
     data_dir: str = "data/coinrun"
 
 
