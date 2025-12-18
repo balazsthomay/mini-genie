@@ -1,0 +1,1 @@
+"""Mini-Genie: A minimal implementation of Genie (Generative Interactive Environments)"""
