@@ -30,7 +30,7 @@ class TokenizerConfig:
     # Spatial compression: 64x64 -> 16x16 tokens (4x downsampling)
     
     # Training
-    batch_size: int = 64 # up from 32 to speed up training
+    batch_size: int = 32
     lr: float = 3e-4
     num_steps: int = 50_000
     commitment_cost: float = 0.25    # VQ-VAE commitment loss weight
@@ -50,7 +50,7 @@ class LAMConfig:
     action_dim: int = 32             # dimension of action embeddings
     
     # Training (shared with dynamics)
-    batch_size: int = 64 # up from 32 to speed up training
+    batch_size: int = 32
     lr: float = 3e-4
 
 
@@ -67,7 +67,7 @@ class DynamicsConfig:
     maskgit_steps: int = 8           # iterative decoding steps at inference
     
     # Training
-    batch_size: int = 64 # up from 32 to speed up training
+    batch_size: int = 32
     lr: float = 3e-4
     num_steps: int = 50_000
     
