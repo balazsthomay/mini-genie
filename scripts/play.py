@@ -35,7 +35,7 @@ def load_models(output_dir: str, device: str):
     # Load tokenizer
     tokenizer_path = os.path.join(output_dir, "tokenizer_final.pt")
     print(f"Loading tokenizer from {tokenizer_path}")
-    checkpoint = torch.load(tokenizer_path, map_location=device)
+    checkpoint = torch.load(tokenizer_path, map_location=device, weights_only=False)
     
     tokenizer = VideoTokenizer(
         in_channels=config.tokenizer.in_channels,
@@ -49,7 +49,7 @@ def load_models(output_dir: str, device: str):
     # Load LAM and Dynamics
     lam_dyn_path = os.path.join(output_dir, "lam_dynamics_final.pt")
     print(f"Loading LAM + Dynamics from {lam_dyn_path}")
-    checkpoint = torch.load(lam_dyn_path, map_location=device)
+    checkpoint = torch.load(lam_dyn_path, map_location=device, weights_only=False)
     
     lam = LatentActionModel(
         num_actions=config.lam.num_actions,

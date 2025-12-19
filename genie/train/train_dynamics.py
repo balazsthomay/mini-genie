@@ -82,7 +82,7 @@ def train_dynamics(
     
     # Load tokenizer (frozen)
     print(f"Loading tokenizer from {tokenizer_path}")
-    checkpoint = torch.load(tokenizer_path, map_location=device)
+    checkpoint = torch.load(tokenizer_path, map_location=device, weights_only=False)
     tokenizer = VideoTokenizer(
         in_channels=config.tokenizer.in_channels,
         hidden_dim=config.tokenizer.hidden_dim,
@@ -90,9 +90,9 @@ def train_dynamics(
         num_codes=config.tokenizer.num_codes,
     ).to(device)
     tokenizer.load_state_dict(checkpoint['model_state_dict'])
-    tokenizer.eval()  # Frozen, sets batch norm/dropout to inference mode
+    tokenizer.eval()  # Frozen
     for param in tokenizer.parameters():
-        param.requires_grad = False # no gradients computed
+        param.requires_grad = False
     print("Tokenizer loaded and frozen")
     
     # Load dataset (sequences of frames)
